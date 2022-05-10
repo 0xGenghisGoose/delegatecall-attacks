@@ -11,12 +11,12 @@ describe('Attack', function () {
 		console.log("Helper contract's address:", helper.address);
 
 		const goodContract = await ethers.getContractFactory('Good');
-		const good = await goodContract.deploy();
+		const good = await goodContract.deploy(helper.address);
 		await good.deployed();
 		console.log("Good contract's address:", good.address);
 
 		const attackContract = await ethers.getContractFactory('Attack');
-		const attack = await attackContract.deploy(goodContract.address);
+		const attack = await attackContract.deploy(good.address);
 		await attack.deployed();
 		console.log("Attack contract's address:", attack.address);
 
